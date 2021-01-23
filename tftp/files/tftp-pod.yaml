@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tftp-pod
+spec:
+  restartPolicy: OnFailure
+  containers:
+  - name: tftpd
+    image: {{ image.name }}
+    resources:
+      requests:
+        memory: {{ resources.requests.memory }}
+      limits:
+        memory: {{ resources.limits.memory }}
+    ports:
+    - containerPort: {{ port.container }}
+      hostPort: {{ port.host }}
+      protocol: udp
+    volumeMounts:
+    - mountPath: /tftpboot/pxelinux.cfg
+      name: pxelinux_cfg
+      readOnly: true
+  volumes:
+  - name: pxelinux_cfg
+    hostPath:
+      path: /opt/tftp/pxelinux.cfg
