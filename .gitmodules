@@ -1,0 +1,3 @@
+[submodule "tftp/files/tftp-hpa-podman"]
+	path = tftp/files/tftp-hpa-podman
+	url = https://github.com/extra2000/tftp-hpa-podman.git
